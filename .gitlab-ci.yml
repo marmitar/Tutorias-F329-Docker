@@ -6,7 +6,7 @@ variables:
   IMAGEREF: c9e4894ebe96 # $CI_REGISTRY/f329-tutoriais/docker:latest
 
 
-build:
+build image:
   tags:
     - docker
   stage: build
