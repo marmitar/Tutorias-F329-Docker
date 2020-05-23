@@ -1,0 +1,24 @@
+stages:
+  - build
+  - test
+
+variables:
+  IMAGE_TAG: $CI_REGISTRY_IMAGE:latest
+
+
+build:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $CI_REGISTRY/f329-tutoriais/docker:latest .
+    - docker push $CI_REGISTRY/f329-tutoriais/docker:latest
+
+test:
+  stage: test
+  image: $CI_REGISTRY/f329-tutoriais/docker:latest
+  script:
+    - python -m pygments readme.md > color.md
+    - ! diff color.md readme.md
