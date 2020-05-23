@@ -3,7 +3,7 @@ stages:
   - test
 
 variables:
-  IMAGEREF: c9e4894ebe96 # $CI_REGISTRY/f329-tutoriais/docker:latest
+  IMAGEREF: $CI_REGISTRY/f329-tutoriais/docker:latest
 
 
 build image:
