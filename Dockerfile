@@ -6,5 +6,5 @@ RUN apt-get update -y && apt-get install -y \
         python3 python3-numpy python3-scipy python3-pandas \
         python3-matplotlib python3-pygments \
     && apt-get --purge remove -y .\*-doc$ \
-    && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+    && apt-get clean -y && rm -rf /var/lib/apt/lists/* \
     && ln -s $(which python3) $(dirname $(which python3))/python
