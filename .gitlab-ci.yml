@@ -3,7 +3,8 @@ stages:
   - test
 
 variables:
-  IMAGEREF: $CI_REGISTRY/f329-tutoriais/docker:latest
+  IMAGEREF: c9e4894ebe96 # $CI_REGISTRY/f329-tutoriais/docker:latest
+
 
 build:
   tags:
@@ -16,3 +17,19 @@ build:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker build -t $IMAGEREF .
     - docker push $IMAGEREF
+
+
+test data:
+  stage: test
+  image: $IMAGEREF
+  script: cd tests && python data.py
+
+test plot:
+  stage: test
+  image: $IMAGEREF
+  script: cd tests && python plot.py
+
+test pygs:
+  stage: test
+  image: $IMAGEREF
+  script: cd tests && python pygs.py
